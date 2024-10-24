@@ -60,3 +60,6 @@ h2 {
 h3 {
     color: #666;
 }
+ol {
+    list-style-type: decimal; /* または disc など */
+}
