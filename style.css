@@ -1,144 +1,108 @@
 /* ========= Base & Theme ========= */
 :root{
-  --bg: #f6f7fb;
-  --card: #ffffff;
-  --text: #1e1f24;
-  --muted: #6b7280;
-  --brand: #4f46e5;   /* Indigo */
-  --brand-2: #06b6d4; /* Cyan */
-  --ring: rgba(79,70,229,.15);
+  --bg:#f6f7fb; --card:#fff; --text:#1e1f24; --muted:#6b7280;
+  --brand:#4f46e5; --brand-2:#06b6d4; --ring:rgba(79,70,229,.15);
 }
-
 @media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0f1115; --card:#141720; --text:#e7e9ee; --muted:#9aa3b2;
-    --ring: rgba(99,102,241,.25);
-  }
+  :root{ --bg:#0f1115; --card:#141720; --text:#e7e9ee; --muted:#9aa3b2; --ring:rgba(99,102,241,.25); }
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
-  font-family: Inter, "Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  line-height:1.7;
-  color:var(--text);
-  background:var(--bg);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  font-family: Inter,"Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  line-height:1.7; color:var(--text); background:var(--bg);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 
 /* ========= Header (no photo) ========= */
 header{
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
-  color:#fff;
-  min-height: 240px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  color:#fff; min-height:240px;
   display:flex; align-items:center; justify-content:center;
-  position: relative;
-  overflow:hidden;
+  position:relative; overflow:hidden;
 }
 header::after{
-  content:"";
-  position:absolute; inset:-40% -20% auto auto;
+  content:""; position:absolute; inset:-40% -20% auto auto;
   width:80vmax; height:80vmax; border-radius:50%;
-  background: radial-gradient(closest-side, rgba(255,255,255,.08), transparent 70%);
+  background:radial-gradient(closest-side,rgba(255,255,255,.08),transparent 70%);
   pointer-events:none;
 }
 header h1{
-  position:relative;
-  margin:0;
-  font-size: clamp(28px, 4vw, 44px);
-  letter-spacing:.5px;
-  text-shadow: 0 6px 24px rgba(0,0,0,.25);
+  position:relative; margin:0; font-size:clamp(28px,4vw,44px); letter-spacing:.5px;
+  text-shadow:0 6px 24px rgba(0,0,0,.25);
 }
 
 /* ========= Sticky Nav ========= */
 nav{
-  position: sticky; top:0; z-index: 20;
-  backdrop-filter: saturate(140%) blur(8px);
-  background: color-mix(in oklab, #000 8%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, #fff 15%, transparent);
+  position:sticky; top:0; z-index:20;
+  backdrop-filter:saturate(140%) blur(8px);
+  /* 読みやすいように半透明の濃色背景を常時付与 */
+  background:rgba(10,12,18,.55);
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
-nav ul{
-  list-style:none; margin:0; padding:.4rem .8rem; text-align:center;
+@supports not (backdrop-filter: blur(8px)){
+  /* フォールバック（古いブラウザ） */
+  nav{ background:#111; }
 }
+nav ul{ list-style:none; margin:0; padding:.4rem .8rem; text-align:center; }
 nav ul li{ display:inline-block; }
 nav ul li a{
   color:#fff; text-decoration:none; font-weight:500;
-  padding:.55rem .9rem; border-radius:12px;
-  position:relative; display:inline-block;
+  padding:.55rem .9rem; border-radius:12px; position:relative; display:inline-block;
 }
 nav ul li a::after{
   content:""; position:absolute; left:.9rem; right:.9rem; bottom:.45rem; height:2px;
-  background:#fff; transform:scaleX(0); transform-origin:left;
-  transition:transform .28s ease;
+  background:#fff; transform:scaleX(0); transform-origin:left; transition:transform .28s ease;
 }
 nav ul li a:hover::after, nav ul li a:focus::after{ transform:scaleX(1); }
 
 /* ========= Layout ========= */
-main{ padding: 32px 16px; }
-main > *{ max-width: 960px; margin: 0 auto; }
+main{ padding:32px 16px; }
+main>*{ max-width:960px; margin:0 auto; }
 section{
   background:var(--card);
-  border:1px solid color-mix(in oklab, var(--text) 12%, transparent);
-  border-radius:16px;
-  padding:24px;
-  margin: 20px auto;
-  box-shadow: 0 6px 24px -12px rgba(0,0,0,.22);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px; padding:24px; margin:20px auto;
+  box-shadow:0 6px 24px -12px rgba(0,0,0,.22);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 section:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px -20px rgba(0,0,0,.35);
-  border-color: var(--ring);
+  transform:translateY(-2px);
+  box-shadow:0 16px 36px -20px rgba(0,0,0,.35);
+  border-color:var(--ring);
 }
 
-h2{
-  margin-top:0; margin-bottom:.6rem;
-  font-size: clamp(20px, 2.4vw, 26px);
-  letter-spacing:.3px;
-}
+h2{ margin-top:0; margin-bottom:.6rem; font-size:clamp(20px,2.4vw,26px); letter-spacing:.3px; }
 h3{ color:var(--muted); margin:.4rem 0 .6rem; font-weight:600; }
-
 p{ margin:.4rem 0 1rem; color:var(--text); }
 strong{ font-weight:700; }
 
 /* ========= Lists (publications etc.) ========= */
-ol{ margin: .2rem 0 0 1.2rem; padding:0; }
+ol{ margin:.2rem 0 0 1.2rem; padding:0; }
 ol li{ margin:.6rem 0; }
-#publication ol{ counter-reset: item; list-style: none; margin-left:0; }
-#publication ol li{
-  counter-increment: item;
-  padding-left: 2.2rem;
-  position: relative;
-}
+#publication ol{ counter-reset:item; list-style:none; margin-left:0; }
+#publication ol li{ counter-increment:item; padding-left:2.2rem; position:relative; }
 #publication ol li::before{
-  content: counter(item) ".";
-  position:absolute; left:.2rem; top:.2rem;
-  color: var(--brand);
-  font-weight: 700;
+  content:counter(item) ".";
+  position:absolute; left:.2rem; top:.2rem; color:var(--brand); font-weight:700;
 }
-#publication i{ font-style: italic; color: var(--muted); }
+#publication i{ font-style:italic; color:var(--muted); }
 #publication b{ font-weight:700; }
 
-/* ========= Cards: subtle accent line ========= */
+/* ========= Card accent ========= */
 section::before{
-  content:""; display:block; height:4px; margin:-24px -24px 16px; border-radius:16px 16px 0 0;
-  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  content:""; display:block; height:4px; margin:-24px -24px 16px;
+  border-radius:16px 16px 0 0; background:linear-gradient(90deg,var(--brand),var(--brand-2));
   opacity:.12;
 }
 
 /* ========= Footer ========= */
-footer{
-  text-align:center; padding: 24px 16px; color:#cbd5e1;
-  background: #0b0d12;
-}
+footer{ text-align:center; padding:24px 16px; color:#cbd5e1; background:#0b0d12; }
 
-/* ========= Responsive Tweaks ========= */
-@media (max-width: 1199px){
-  header{ min-height:210px; }
-  section{ padding:20px; }
-}
-@media (max-width: 767px){
+/* ========= Responsive ========= */
+@media (max-width:1199px){ header{ min-height:210px; } section{ padding:20px; } }
+@media (max-width:767px){
   header{ min-height:180px; }
   nav ul{ padding:.35rem .5rem; }
   nav ul li a{ padding:.5rem .7rem; }
