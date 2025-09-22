@@ -6,16 +6,33 @@ body {
     background-color: #f4f4f4;
 }
 
+/* デフォルト (PC向け, 幅1200px以上) */
 header {
-  background-image: url("images/42705411-C9BB-4E20-82D1-D_1_105_c.jpeg"); /* 画像パス */
-  background-size: cover;  /* ヘッダーいっぱいに拡大縮小 */
-  background-position: center; /* 中央寄せ */
-  height: 250px; /* 高さを調整 */
+  background-image: url("images/42705411-C9BB-4E20-82D1-D_1_105_c.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* PCは少し大きめ */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white; /* 文字色を白に */
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.7); /* 文字が見やすくなる */
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+/* タブレット (768px〜1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  header {
+    height: 220px; /* 少し低め */
+    font-size: 1.2rem;
+  }
+}
+
+/* スマホ (〜767px) */
+@media (max-width: 767px) {
+  header {
+    height: 160px; /* さらに低め */
+    font-size: 1rem; /* 文字も小さく */
+  }
 }
 
 nav ul {
