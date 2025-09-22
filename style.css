@@ -7,10 +7,15 @@ body {
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+  background-image: url("images/42705411-C9BB-4E20-82D1-D_1_105_c.jpeg"); /* 画像パス */
+  background-size: cover;  /* ヘッダーいっぱいに拡大縮小 */
+  background-position: center; /* 中央寄せ */
+  height: 250px; /* 高さを調整 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* 文字色を白に */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7); /* 文字が見やすくなる */
 }
 
 nav ul {
